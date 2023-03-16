@@ -8,31 +8,100 @@
 <body>
     <div class="container-fluid main_menu">
 
-    {{>navbar}}
+        {{>navbar}}
 
-    <!--main part-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-10 col-12 mx-auto">
-                <div class="row">
-                    <!-- left side div-->
-                    
-                    <div class="col-md-6 col--12 main_header_left">
-                        <p>Welcome to Weather app</p>
-                        <h1> I am A <span class="text_clr"> MERN stack Developer</span> and student at IIITV</h1>
-                        <a href="https://github.com/IamHetPatel" target=" "><button>My Github</button></a>
+        <!--main part-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 col-12 mx-auto">
+                    <div class="main_content">
+                        <form class="temp_form">
+                            <input type="text" id="cityName" placeholder="Enter your city name" autocomplete="off">
+                            <input type="submit" value="search" id="submitBtn">
+                        </form>
                     </div>
-                    <!-- right side div-->
-                    
+                    <div class="tempInformation">
+                        <div class="top_layer">
+                            <p id="day">Tuesday</p>
+                            <p id="today_data">13 OCT</p>
+                        </div>
+                        <div class="main_layer">
+                            <p id="city_name">Get Output Here</p>
+                            <div class="middle_layer data_hide">
+                                <p id="temp"><span>0</span><sup>o</sup>C</p>
+                                <p id="temp_status"> <i class="fa fa-cloud" aria-hidden="true"></i> </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- footer part -->
-    <footer>
-        <p>Created with ♥️ by Het</p>
-    </footer>
+        <!-- footer part -->
+        <footer>
+            <p>Created with ♥️ by Het</p>
+        </footer>
+        <script src="js/main.js"></script>
+        <script>
+            const day = document.getElementById('day');
+            const getCurrentDay = () => {
+                let weekday = new Array(7);
+                weekday[0] ="Sunday";
+                weekday[1] ="Monday";
+                weekday[2] ="Tuesday";
+                weekday[3] ="Wed";
+                weekday[4] ="Thursday"
+                weekday[5] = "Friday"
+                weekday[6] = "Saturday"
+                let currentTime = new Date();
+                let days = weekday[currentTime.getDay()];
+                let day = document.getElementById('day')
+                day.innerText = days;
+            };
+            getCurrentDay();
+
+            const date = document.getElementById('date');
+            const getCurrentTime = () => {
+                var month = [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "June",
+                    "July",
+                    "Aug",
+                    "Sept",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                ];
+                var now = new Date();
+                var month = month[now.getMonth()];
+                var date = now.getDate();
+
+                var hours = now.getHours();
+                var mins = now.getMinutes();
+
+                var periods = "AM";
+
+                if (hours > 11) {
+                    periods = "PM"
+                    if (hours > 12) {
+                        hours = hours - 12;
+                    }
+                }
+                if (mins < 10) {
+                    mins = "0" + mins;
+                }
+
+                let currentTime = new Date();
+                let mon = document.getElementById('today_data')
+                console.log(month)
+                mon.innerText= date + " "+ month;
+            }
+            getCurrentTime();
+        </script>
 </body>
 
 </html>
